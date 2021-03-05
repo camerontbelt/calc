@@ -10,7 +10,7 @@ public class Token
 
     public override string ToString()
     {
-        var result = $"";
+        var result = $"<'{Value}',{Type}>";
         return result;
     }
 }

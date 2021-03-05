@@ -6,11 +6,13 @@ namespace calc
     {
         static void Main(string[] args)
         {
-            while(true)
+            var text = "[a, b ]";
+            var lexer = new Lexer(text);
+            var output = lexer.Tokenize();
+            Console.WriteLine(text);
+            foreach(var token in output)
             {
-                var text = Console.ReadLine();
-                var lexer = new Lexer(text);
-                var output = lexer.Tokenize();
+                Console.WriteLine(token.ToString());
             }
         }
     }
