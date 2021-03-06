@@ -27,6 +27,9 @@ public class ListLexer : Lexer
                 case ']':
                     Match(_currentChar);
                     return new Token(TokenTypes.RBRACK, "]");
+                case '=':
+                    Match(_currentChar);
+                    return new Token(TokenTypes.EQUALS, "=");
                 default:
                     if(Char.IsLetter(_currentChar)) return Name();
                     else throw new Exception($"invalid character {_currentChar}");

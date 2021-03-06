@@ -4,5 +4,6 @@ public enum TokenTypes
     RBRACK,
     NAME,
     COMMA,
+    EQUALS,
     EOF
 }
