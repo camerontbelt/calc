@@ -5,6 +5,7 @@ public class ListLexer : Lexer
     public ListLexer(string text) : base(text)
     {
     }
+
     public override Token NextToken()
     {
         while(_currentChar != '\u001a')
@@ -34,7 +35,6 @@ public class ListLexer : Lexer
         return new Token(TokenTypes.EOF,"EOF");
     }
 
-
     private Token Name()
     {
         var value = string.Empty;
@@ -49,7 +49,7 @@ public class ListLexer : Lexer
 
     private void WhiteSpace()
     {
-        while(_currentChar == ' ' 
+        if(_currentChar == ' ' 
         || _currentChar == '\t'
         || _currentChar == '\n'
         || _currentChar == '\r'){
