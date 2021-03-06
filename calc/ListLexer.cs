@@ -19,13 +19,13 @@ public class ListLexer : Lexer
                     WhiteSpace();
                     continue;
                 case ',':
-                    Devour();
+                    Match(_currentChar);
                     return new Token(TokenTypes.COMMA, ",");
                 case '[':
-                    Devour();
+                    Match(_currentChar);
                     return new Token(TokenTypes.LBRACK,"[");
                 case ']':
-                    Devour();
+                    Match(_currentChar);
                     return new Token(TokenTypes.RBRACK, "]");
                 default:
                     if(Char.IsLetter(_currentChar)) return Name();
@@ -41,7 +41,7 @@ public class ListLexer : Lexer
         do
         {
             value += _currentChar;
-            Devour();
+            Match(_currentChar);
         }while(Char.IsLetter(_currentChar));
         var result = new Token(TokenTypes.NAME, value);
         return result;
