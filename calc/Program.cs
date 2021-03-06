@@ -6,7 +6,7 @@ namespace calc
     {
         static void Main(string[] args)
         {
-            var text = "[a, b]";
+            var text = "[a, b,[c,d]]";
             var lexer = new ListLexer(text);
             var tokens = lexer.Tokenize();
             Console.WriteLine(text);
