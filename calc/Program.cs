@@ -7,14 +7,9 @@ namespace calc
         static void Main(string[] args)
         {
             var text = "[a, b,[c,d]]";
-            var lexer = new ListLexer(text);
-            var tokens = lexer.Tokenize();
             Console.WriteLine(text);
-            foreach(var token in tokens)
-            {
-                Console.WriteLine(token.ToString());
-            }
-            var parser = new ListParser(tokens);
+            var lexer = new ListLexer(text);
+            var parser = new ListParser(lexer);
             parser.List();
         }
     }

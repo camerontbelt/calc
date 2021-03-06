@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class ListParser : Parser 
 {
-    public ListParser(List<Token> tokens) : base(tokens)
+    public ListParser(ListLexer lexer) : base(lexer)
     {
         
     }

@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
+using calc;
 
 public abstract class Parser
 {
-    private readonly List<Token> _tokens;
     private int _currentPosition = 0;
     internal Token _currentToken;
-    public Parser(List<Token> tokens)
+    private readonly ListLexer _lexer;
+
+    public Parser(ListLexer lexer)
     {
-        _tokens = tokens;
-        _currentToken = _tokens[_currentPosition];
+        _currentToken = lexer.NextToken();
+        _lexer = lexer;
     }
 
     public void Match(TokenTypes tokenType)
@@ -21,6 +23,6 @@ public abstract class Parser
     private void Devour()
     {
         _currentPosition++;
-        _currentToken = _tokens[_currentPosition];
+        _currentToken = _lexer.NextToken();
     }
 }
