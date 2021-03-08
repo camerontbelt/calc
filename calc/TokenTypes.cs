@@ -5,5 +5,14 @@ public enum TokenTypes
     NAME,
     COMMA,
     EQUALS,
-    EOF
+    EOF,
+    PLUS,
+    MINUS,
+    MULTIPLY,
+    DIVIDE,
+    LPAREN,
+    RPAREN,
+    EXP,
+    INTEGER,
+    DOT
 }

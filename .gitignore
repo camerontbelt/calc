@@ -223,3 +223,4 @@ CorporateWebApp/App_Data/Log\.txt
 /.idea
 calc/obj/Debug/net5.0/calc.assets.cache
 calc/obj/Debug/net5.0/calc.csprojAssemblyReference.cache
+calc/bin/Debug/net5.0/calc.pdb
