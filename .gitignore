@@ -221,3 +221,5 @@ CorporateWebApp/App_Data/Log\.txt
 /CorporateWebApp/10.22.0.64/C$/CorporateSiteFileUploads/Accident_Pictures
 /CorporateWebApp/preedit
 /.idea
+calc/obj/Debug/net5.0/calc.assets.cache
+calc/obj/Debug/net5.0/calc.csprojAssemblyReference.cache
