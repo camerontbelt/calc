@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vc+jLWgUbxo0OdVNeehoKFrwsoXicOmUokP8MPyQBkFsqpqcFXpPpToH6Kv0ysbZN4IljKdq95aMNRw3aBpwFQ==",
+  "dgSpecHash": "ixniHjUQRStTfcZzl2Ik2x6D5ekMUh5T1xE4BYLijX/uesf6Txt5xcjQYTx86TIluUqqWzUZtSOMkcY+Asv5iA==",
   "success": true,
-  "projectFilePath": "/Users/cameronbelt/Applications/projects/calc/calc/calc.csproj",
+  "projectFilePath": "C:\\Users\\cbelt\\Source\\repos\\calc\\calc\\calc.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
