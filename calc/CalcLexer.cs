@@ -37,22 +37,33 @@ public class CalcLexer : Lexer
                     Devour();
                     return new Token(TokenTypes.DIVIDE, "\\");
                 default:
-                    if(char.IsDigit(_currentChar)) return Integer();
+                    if(char.IsDigit(_currentChar)) return Number();
                     else throw new Exception($"unexpected character '{_currentChar}'");
             }
         }
         return new Token(TokenTypes.EOF, "EOF");
     }
 
-    private Token Integer()
+    private Token Number()
     {
         var digitString = _currentChar.ToString();
-        Devour();
+        Devour();  
         while(char.IsDigit(_currentChar))
         {
             digitString += _currentChar.ToString();
             Devour();
         }
+        if(_currentChar == '.')
+        {
+            digitString += ".";
+            Devour();
+            while(char.IsDigit(_currentChar))
+            {
+                digitString += _currentChar.ToString();
+                Devour();
+            }
+            return new Token(TokenTypes.FLOAT, digitString);
+        }       
         return new Token(TokenTypes.INTEGER, digitString);
     }
 

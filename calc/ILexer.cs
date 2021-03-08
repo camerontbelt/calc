@@ -7,5 +7,6 @@ namespace calc
         List<Token> Tokenize();
         void Devour();
         void Match(char c);
+        Token NextToken();
     }
 }

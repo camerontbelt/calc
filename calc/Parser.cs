@@ -1,13 +1,14 @@
 using System;
+using calc;
 
-public abstract class Parser
+public abstract class Parser : IParser
 {
     private int _currentPosition = 0;
     private Token[] _tokens;
     private int _k;
-    internal readonly ListLexer _lexer;
+    internal readonly ILexer _lexer;
 
-    public Parser(ListLexer lexer, int k)
+    public Parser(ILexer lexer, int k)
     {
         _lexer = lexer;
         _k = k;
@@ -24,7 +25,7 @@ public abstract class Parser
         else throw new Exception($"expecting {LookAhead(1)}; but found {tokenType}");
     }
 
-    private void Devour()
+    public void Devour()
     {
         _tokens[_currentPosition] = _lexer.NextToken();
         _currentPosition = (_currentPosition+1) % _k;
