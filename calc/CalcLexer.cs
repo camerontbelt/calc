@@ -32,6 +32,15 @@ public class CalcLexer : Lexer
                 case '.':
                     Devour();
                     return new Token(TokenTypes.DOT, ".");
+                case '^':
+                    Devour();
+                    return new Token(TokenTypes.EXP, "^");
+                case '(':
+                    Devour();
+                    return new Token(TokenTypes.LPAREN, "(");
+                case ')':
+                    Devour();
+                    return new Token(TokenTypes.RPAREN, ")");
                 case '\\':
                 case '/':
                     Devour();
