@@ -6,14 +6,15 @@ namespace calc
     {
         static void Main(string[] args)
         {
-            Console.Write(">>>");
-            var text = Console.ReadLine();
-            var lexer = new CalcLexer(text);
-            var tokens = lexer.Tokenize();
-            foreach(var token in tokens)
-            {
-                Console.WriteLine(token);
-            }
+            // var text = "[a,b]";
+            // var lexer = new ListLexer(text);
+            // var parser = new ListParser(lexer);
+            var text = "[a,b]";
+            var lexer = new ListLexer(text);
+            var parser = new ListParser(lexer);
+            var root = parser.Parse();
+            //Act
+            var rootString = root.ToStringTree();
         }
     }
 }
