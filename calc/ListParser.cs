@@ -8,36 +8,61 @@ public class ListParser : Parser
         
     }
 
-    // list : '[' elements ']';
-    public void List()
+    public AstNode Parse()
     {
+        var root = List();
+        return root;
+    }
+
+    // list : '[' elements ']';
+    public AstNode List()
+    {
+        var node = new AstNode();
         Match(TokenTypes.LBRACK);
-        Elements();
+        var children = Elements();
         Match(TokenTypes.RBRACK);
+        foreach(var child in children)
+        {
+            node.AddChildNode(child);
+        }
+        return node;
     }
 
     // elements : element (',' element)*;
-    private void Elements()
+    private List<AstNode> Elements()
     {
-        Element();
+        var result = new List<AstNode>();
+        result.Add(Element());
         while(LookAhead(1) == TokenTypes.COMMA)
         {
             Match(TokenTypes.COMMA);
-            Element();
+            result.Add(Element());
         }
+        return result;
     }
 
     // element : NAME '=' NAME | NAME | list;
-    private void Element()
+    private AstNode Element()
     {
         if (LookAhead(1) == TokenTypes.NAME && LookAhead(2) == TokenTypes.EQUALS)
         {
+            var left = LookAheadToken(1);
             Match(TokenTypes.NAME);
+            var op = LookAheadToken(1);
             Match(TokenTypes.EQUALS);
+            var right = LookAheadToken(1);
             Match(TokenTypes.NAME);
+            var node = new AstNode(op);
+            node.AddChildNode(new AstNode(left));
+            node.AddChildNode(new AstNode(right));
+            return node;
         }
-        else if(LookAhead(1) == TokenTypes.NAME) Match(TokenTypes.NAME);
-        else if (LookAhead(1) == TokenTypes.LBRACK) List();
+        else if(LookAhead(1) == TokenTypes.NAME){
+            var result = new AstNode(LookAheadToken(1));
+            Match(TokenTypes.NAME);
+            return result;
+        } 
+        else if (LookAhead(1) == TokenTypes.LBRACK) return List();
         else throw new Exception($"expecting name or list; found {LookAhead(1).ToString()}");
     }
 }
