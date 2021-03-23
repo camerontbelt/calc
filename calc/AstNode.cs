@@ -27,6 +27,11 @@ public class AstNode
         _children.Add(node);
     }
 
+    public AstNode GetChild(int index)
+    {
+        return _children[index-1];
+    }
+
     public TokenTypes GetNodeType()
     {
         return Token.Type;
