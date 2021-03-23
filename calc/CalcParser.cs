@@ -24,7 +24,10 @@ public class CalcParser : Parser
             op.AddChildNode(roperand);
             return op;
         } 
-        if(LookAhead(2) == TokenTypes.PLUS)
+        if(LookAhead(2) == TokenTypes.PLUS 
+        || LookAhead(2) == TokenTypes.MULTIPLY
+        || LookAhead(2) == TokenTypes.DIVIDE
+        || LookAhead(2) == TokenTypes.MINUS)
         {
             op.AddChildNode(Expression());
             return op;

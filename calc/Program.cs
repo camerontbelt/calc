@@ -6,7 +6,7 @@ namespace calc
     {
         static void Main(string[] args)
         {
-            var text = "1+2+3+4.1459";
+            var text = "1+2*3/4-5";
             Console.WriteLine("Input\n"+text);
             var lexer = new CalcLexer(text);
             var tokens = lexer.Tokenize();
@@ -19,9 +19,8 @@ namespace calc
             var tree = parser.Parse();
             Console.WriteLine("\nParse Tree");
             Console.WriteLine(tree.ToStringTree());
-            var interpreter = new CalcInterpreter(tree);
-            Console.WriteLine("\nInterpreter Results");
-            Console.WriteLine(interpreter.Interpret());
+            var interpreter = new CalcInterpreter();
+            Console.WriteLine(interpreter.Interpret(tree));
         }
     }
 }
