@@ -6,7 +6,7 @@ namespace calc
     {
         static void Main(string[] args)
         {
-            var text = "14 + 2 * 3 - 6 / 2";
+            var text = "14 +2 * 3 - 6 / 2";
             //var text = "14 + 2 + 6";
             Console.WriteLine("Input\n"+text);
 
