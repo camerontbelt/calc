@@ -28,17 +28,49 @@ namespace calc.test
 
 
         [Test]
-        public void AstNode_CreateParseTreeThenPrint_ShouldPass()
+        public void Interpreter_GivenEquationSolve_1_ShouldPass()
         {
-            // //Arrange
-            // var text = "[a,b[c,d]]";
-            // var lexer = new ListLexer(text);
-            // var parser = new ListParser(lexer);
-            // var root = parser.Parse();
-            // //Act
-            // var rootString = root.ToStringTree();
-            // //Assert
-            // Assert.Pass();
+            //Arrange
+            var text = "8.23987456*0.3+9-2+45";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(54.471962368,result);
+        }
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_2_ShouldPass()
+        {
+            //Arrange
+            var text = "9-2+45";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(52,result);
+        }
+
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_3_ShouldPass()
+        {
+            //Arrange
+            var text = "(9-2)+45";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(52,result);
         }
     }
 }

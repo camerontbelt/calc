@@ -21,81 +21,26 @@ namespace calc
 
         private double Divide(AstNode node)
         {
-            if(node.GetChild(2).Token.Type == TokenTypes.INTEGER || node.GetChild(2).Token.Type == TokenTypes.FLOAT)
-            {
-                var lop = Convert.ToDouble(node.GetChild(1).Token.Value);
-                var rop = Convert.ToDouble(node.GetChild(2).Token.Value);
-                return lop/rop;
-            }
-            else if(node.GetChild(1).Token.Type == TokenTypes.INTEGER || node.GetChild(1).Token.Type == TokenTypes.FLOAT)
-            {
-                var lop = Convert.ToDouble(node.GetChild(1).Token.Value);
-                return lop / Interpret(node.GetChild(2));
-            }
-            else return Interpret(node.GetChild(2));
+            var result = Interpret(node.GetChild(1))/Interpret(node.GetChild(2));
+            return result;
         }
 
         private double Multiply(AstNode node)
         {
-            if(node.GetChild(2).Token.Type == TokenTypes.INTEGER 
-            || node.GetChild(2).Token.Type == TokenTypes.FLOAT)
-            {
-                var lop = Convert.ToDouble(node.GetChild(1).Token.Value);
-                var rop = Convert.ToDouble(node.GetChild(2).Token.Value);
-                return lop*rop;
-            }
-            else if(node.GetChild(1).Token.Type == TokenTypes.INTEGER 
-            || node.GetChild(2).Token.Type == TokenTypes.FLOAT)
-            {
-                var lop = Convert.ToDouble(node.GetChild(1).Token.Value);
-                return lop*Interpret(node.GetChild(2));
-            }
-            else
-            {
-                return Interpret(node.GetChild(2));
-            }
+            var result = Interpret(node.GetChild(1))*Interpret(node.GetChild(2));
+            return result;
         }
 
         private double Minus(AstNode node)
         {
-            if(node.GetChild(2).Token.Type == TokenTypes.INTEGER 
-            || node.GetChild(2).Token.Type == TokenTypes.FLOAT)
-            {
-                var lop = Convert.ToDouble(node.GetChild(1).Token.Value);
-                var rop = Convert.ToDouble(node.GetChild(2).Token.Value);
-                return lop-rop;
-            }
-            else if(node.GetChild(1).Token.Type == TokenTypes.INTEGER 
-            || node.GetChild(1).Token.Type == TokenTypes.FLOAT)
-            {
-                var lop = Convert.ToDouble(node.GetChild(1).Token.Value);
-                return lop-Interpret(node.GetChild(2));
-            }
-            else
-            {
-                return Interpret(node.GetChild(2));
-            }
+            var result = Interpret(node.GetChild(1))-Interpret(node.GetChild(2));
+            return result;
         }
 
         private double Plus(AstNode node)
         {
-            if(node.GetChild(2).Token.Type == TokenTypes.INTEGER 
-            || node.GetChild(2).Token.Type == TokenTypes.FLOAT)
-            {
-                var lop = Convert.ToDouble(node.GetChild(1).Token.Value);
-                var rop = Convert.ToDouble(node.GetChild(2).Token.Value);
-                return lop+rop;
-            }
-            else if(node.GetChild(1).Token.Type == TokenTypes.INTEGER 
-            || node.GetChild(1).Token.Type == TokenTypes.FLOAT)
-            {
-                var lop = Convert.ToDouble(node.GetChild(1).Token.Value);
-                return lop+Interpret(node.GetChild(2));
-            }
-            else
-            {
-                return Interpret(node.GetChild(2));
-            }
+            var result = Interpret(node.GetChild(1))+Interpret(node.GetChild(2));
+            return result;
         }
     }
 }
