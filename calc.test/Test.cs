@@ -62,7 +62,7 @@ namespace calc.test
         public void Interpreter_GivenEquationSolve_3_ShouldPass()
         {
             //Arrange
-            var text = "(9-2)+45";
+            var text = "2^4+9*6/7";
             var lexer = new CalcLexer(text);
             var parser = new CalcParser(new CalcLexer(text));
             var tree = parser.Parse();
@@ -70,7 +70,39 @@ namespace calc.test
             //Act
             var result = interpreter.Interpret(tree);
             //Assert
-            Assert.AreEqual(52,result);
+            Assert.GreaterOrEqual(result,23.7);
+        }
+
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_4_ShouldPass()
+        {
+            //Arrange
+            var text = "1-(2+3)";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(-4,result);
+        }
+
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_5_ShouldPass()
+        {
+            //Arrange
+            var text = "2^(-3)";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(0.125,result);
         }
     }
 }
