@@ -6,7 +6,7 @@ namespace calc
     {
         static void Main(string[] args)
         {
-            var text = "1-2+3";
+            var text = "9-2+45";
             var lexer = new CalcLexer(text);
             var tokens = lexer.Tokenize();
 

@@ -13,46 +13,43 @@ public class CalcParser : Parser
     public AstNode Expression()
     {
         var term = Term();
-        AstNode expression = null;
         while(LookAhead(1) == TokenTypes.PLUS || LookAhead(1) == TokenTypes.MINUS)
         {
-            expression = new AstNode(LookAheadToken(1));
-            expression.AddChildNode(term);
+            var op = new AstNode(LookAheadToken(1));
+            op.AddChildNode(term);
             Devour();// Eat the operator
-            expression.AddChildNode(Term());
+            op.AddChildNode(Term());
+            term = op;
         }
-        if(expression == null) return term;
-        return expression;
+        return term;
     }
 
     public AstNode Term()
     {
         var factor = Exponent();
-        AstNode term = null;
         while(LookAhead(1) == TokenTypes.MULTIPLY || LookAhead(1) == TokenTypes.DIVIDE)
         {
-            term = new AstNode(LookAheadToken(1));
-            term.AddChildNode(factor);
+            var op = new AstNode(LookAheadToken(1));
+            op.AddChildNode(factor);
             Devour();// Eat the operator
-            term.AddChildNode(Exponent());
+            op.AddChildNode(Exponent());
+            factor = op;
         }
-        if(term == null)return factor;
-        return term;
+        return factor;
     }
 
     public AstNode Exponent()
     {
         var factor = Factor();
-        AstNode term = null;
         while(LookAhead(1) == TokenTypes.EXP)
         {
-            term = new AstNode(LookAheadToken(1));
-            term.AddChildNode(factor);
+            var op = new AstNode(LookAheadToken(1));
+            op.AddChildNode(factor);
             Devour();// Eat the operator
-            term.AddChildNode(Factor());
+            op.AddChildNode(Factor());
+            factor = op;
         }
-        if(term == null)return factor;
-        return term;
+        return factor;
     }
 
     public AstNode Factor()
