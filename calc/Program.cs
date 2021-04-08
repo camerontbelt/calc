@@ -6,7 +6,7 @@ namespace calc
     {
         static void Main(string[] args)
         {
-            var text = "2^4+9*6/7";
+            var text = "2^-(4+9*6/7)";
             var lexer = new CalcLexer(text);
             var tokens = lexer.Tokenize();
 

@@ -104,5 +104,34 @@ namespace calc.test
             //Assert
             Assert.AreEqual(0.125,result);
         }
+
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_6_ShouldPass()
+        {
+            //Arrange
+            var text = "2^-(4+9*6/7)";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(0.0002976107554210143,result);
+        }
+
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_7_ShouldFail()
+        {
+            //Arrange
+            var text = "2^-(4+9*6/7)a";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            //Act
+            //Assert
+            Assert.Throws<Exception>(() => parser.Parse());
+        }
     }
 }
