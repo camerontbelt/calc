@@ -19,7 +19,7 @@ public class CalcParser : Parser
             expression = new AstNode(LookAheadToken(1));
             expression.AddChildNode(term);
             Devour();// Eat the operator
-            expression.AddChildNode(Expression());
+            expression.AddChildNode(Term());
         }
         if(expression == null) return term;
         return expression;
@@ -27,14 +27,29 @@ public class CalcParser : Parser
 
     public AstNode Term()
     {
-        var factor = Factor();
+        var factor = Exponent();
         AstNode term = null;
         while(LookAhead(1) == TokenTypes.MULTIPLY || LookAhead(1) == TokenTypes.DIVIDE)
         {
             term = new AstNode(LookAheadToken(1));
             term.AddChildNode(factor);
             Devour();// Eat the operator
-            term.AddChildNode(Term());
+            term.AddChildNode(Exponent());
+        }
+        if(term == null)return factor;
+        return term;
+    }
+
+    public AstNode Exponent()
+    {
+        var factor = Factor();
+        AstNode term = null;
+        while(LookAhead(1) == TokenTypes.EXP)
+        {
+            term = new AstNode(LookAheadToken(1));
+            term.AddChildNode(factor);
+            Devour();// Eat the operator
+            term.AddChildNode(Factor());
         }
         if(term == null)return factor;
         return term;
