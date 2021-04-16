@@ -15,5 +15,13 @@ public enum TokenTypes
     EXP,
     INTEGER,
     DOT,
-    FLOAT
+    FLOAT,
+    MOD,
+    GTHAN,
+    LTHAN,
+    AND,
+    OR,
+    NOT,
+    GTOE,
+    LTOE
 }

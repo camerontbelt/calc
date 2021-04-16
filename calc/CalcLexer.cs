@@ -41,6 +41,38 @@ public class CalcLexer : Lexer
                 case ')':
                     Devour();
                     return new Token(TokenTypes.RPAREN, ")");
+                case '%':
+                    Devour();
+                    return new Token(TokenTypes.MOD, "%");
+                case '>':
+                    Devour();
+                    if (_currentChar == '=')
+                    {
+                        Devour();
+                        return new Token(TokenTypes.GTOE,">=");
+                    }
+                    return new Token(TokenTypes.GTHAN, ">");
+                case '<':
+                    Devour();
+                    if (_currentChar == '=')
+                    {
+                        Devour();
+                        return new Token(TokenTypes.LTOE,"<=");
+                    }
+                    return new Token(TokenTypes.LTHAN, "<");
+                case '=':
+                    Devour();
+                    Match('=');
+                    return new Token(TokenTypes.EQUALS, "==");
+                case '&':
+                    Devour();
+                    return new Token(TokenTypes.AND, "&");
+                case '|':
+                    Devour();
+                    return new Token(TokenTypes.OR, "|");
+                case '!':
+                    Devour();
+                    return new Token(TokenTypes.NOT, "!");
                 case '\\':
                 case '/':
                     Devour();

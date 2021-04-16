@@ -105,7 +105,6 @@ namespace calc.test
             Assert.AreEqual(0.125,result);
         }
 
-
         [Test]
         public void Interpreter_GivenEquationSolve_6_ShouldPass()
         {
@@ -121,7 +120,6 @@ namespace calc.test
             Assert.AreEqual(0.0002976107554210143,result);
         }
 
-
         [Test]
         public void Interpreter_GivenEquationSolve_7_ShouldFail()
         {
@@ -132,6 +130,96 @@ namespace calc.test
             //Act
             //Assert
             Assert.Throws<Exception>(() => parser.Parse());
+        }
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_8_ShouldPass()
+        {
+            //Arrange
+            var text = "3%2";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(1,result);
+        }
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_9_ShouldPass()
+        {
+            //Arrange
+            var text = "3 > 2";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(1,result);
+        }
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_10_ShouldPass()
+        {
+            //Arrange
+            var text = "!(3 > 2)";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(0,result);
+        }
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_11_ShouldPass()
+        {
+            //Arrange
+            var text = "3 >= 3";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(1,result);
+        }
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_12_ShouldPass()
+        {
+            //Arrange
+            var text = "3 == 3";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(1,result);
+        }
+
+        [Test]
+        public void Interpreter_GivenEquationSolve_13_ShouldPass()
+        {
+            //Arrange
+            var text = "!((1.3*4 >= 5/2) & (6^2 >= 7^2))";
+            var lexer = new CalcLexer(text);
+            var parser = new CalcParser(new CalcLexer(text));
+            var tree = parser.Parse();
+            var interpreter = new CalcInterpreter();
+            //Act
+            var result = interpreter.Interpret(tree);
+            //Assert
+            Assert.AreEqual(1,result);
         }
     }
 }
