@@ -12,8 +12,8 @@ namespace calc
 
             var parser = new CalcParser(new CalcLexer(text));
             var tree = parser.Parse();
-            Console.WriteLine("\nParse Tree");
-            Console.WriteLine(tree.ToStringTree());
+            // Console.WriteLine("\nParse Tree");
+            // Console.WriteLine(tree.ToStringTree());
 
             var interpreter = new CalcInterpreter();
             // Console.WriteLine("\nResult");
